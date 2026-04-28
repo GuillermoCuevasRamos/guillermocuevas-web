@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Criterio — Lo que los datos no dicen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --primary:       #245347;
+    --primary-light: rgba(36, 83, 71, 0.08);
+    --surface:       #faf9f6;
+    --surface-low:   #f4f3f0;
+    --surface-high:  #e9e8e5;
+    --text-dark:     #1a1c1a;
+    --text-mid:      #404945;
+    --text-light:    #707975;
+    --border:        rgba(0,0,0,0.05);
+    --max-w:         680px;
+  }
+
+  html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+
+  body {
+    font-family: 'Manrope', sans-serif;
+    background-color: var(--surface);
+    color: var(--text-mid);
+    min-height: 100vh;
+    font-weight: 300;
+  }
+
+  /* HEADER */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(250,249,246,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .header-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .wordmark {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-size: 1.5rem;
+    color: var(--primary);
+    text-decoration: none;
+    opacity: 0.9;
+    transition: opacity 0.2s;
+  }
+  .wordmark:hover { opacity: 1; }
+  .header-nav a {
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .header-nav a:hover { color: var(--primary); }
+
+  /* MAIN */
+  main {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 6rem 1.5rem 8rem;
+  }
+
+  /* MASTHEAD */
+  .masthead { margin-bottom: 5rem; }
+  .label {
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 700;
+    color: var(--primary);
+    display: block;
+    margin-bottom: 1rem;
+  }
+  .masthead h1 {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(4rem, 10vw, 5.5rem);
+    line-height: 1.05;
+    color: var(--primary);
+    margin-bottom: 2rem;
+    letter-spacing: -0.01em;
+  }
+  .masthead .tagline {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-size: clamp(1.25rem, 3vw, 1.6rem);
+    line-height: 1.5;
+    color: var(--text-light);
+    margin-bottom: 3rem;
+  }
+  .masthead .description {
+    font-size: 1.0625rem;
+    line-height: 1.8;
+    font-weight: 300;
+    color: var(--text-mid);
+    max-width: 560px;
+  }
+
+  /* FORM */
+  .form-wrapper {
+    margin-top: 3rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--border);
+  }
+  .form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  @media (min-width: 540px) {
+    .form-row { flex-direction: row; align-items: flex-end; }
+  }
+  .form-group { flex: 1; }
+  .form-label {
+    display: block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  .form-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+    padding: 0.75rem 0;
+    font-family: 'Manrope', sans-serif;
+    font-size: 1rem;
+    color: var(--text-dark);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-input::placeholder { color: rgba(0,0,0,0.25); }
+  .form-input:focus { border-color: var(--primary); }
+  .btn-primary {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 0.75rem 2rem;
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.3s;
+    white-space: nowrap;
+  }
+  .btn-primary:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(36, 83, 71, 0.15);
+  }
+  .form-disclaimer {
+    margin-top: 1rem;
+    font-size: 0.7rem;
+    color: var(--text-light);
+    letter-spacing: 0.01em;
+  }
+
+  /* EDITORIAL SECTION */
+  .editorial { margin-top: 8rem; }
+  .editorial-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: start;
+    margin-bottom: 4rem;
+  }
+  @media (min-width: 600px) {
+    .editorial-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .editorial-image {
+    aspect-ratio: 4/5;
+    background: var(--surface-low);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+  }
+  .editorial-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1);
+    opacity: 0.75;
+    mix-blend-mode: multiply;
+  }
+  .editorial-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.25rem;
+  }
+  .editorial-text h3 {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.75rem;
+    line-height: 1.3;
+    color: var(--text-dark);
+  }
+  .editorial-text p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-mid);
+  }
+
+  /* PULLQUOTE */
+  .pullquote {
+    background: var(--surface-low);
+    padding: 3rem;
+    border-radius: 2px;
+    border-left: 2px solid var(--primary);
+    margin-top: 2rem;
+  }
+  .pullquote blockquote {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.375rem;
+    line-height: 1.6;
+    color: var(--primary);
+  }
+  .pullquote cite {
+    display: block;
+    margin-top: 1.5rem;
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dark);
+    font-style: normal;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    margin-top: 8rem;
+    background: var(--surface-low);
+  }
+  .footer-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 3rem 1.5rem 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    text-align: center;
+  }
+  @media (min-width: 540px) {
+    .footer-inner {
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: left;
+    }
+  }
+  .footer-brand { display: flex; flex-direction: column; gap: 0.375rem; }
+  .footer-wordmark {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-size: 1.125rem;
+    color: var(--primary);
+  }
+  .footer-copy {
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+    color: var(--text-light);
+  }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--primary); text-decoration: underline; text-underline-offset: 4px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a class="wordmark" href="/criterio/">Criterio</a>
+    <nav class="header-nav">
+      <a href="https://guillermocuevas.es">guillermocuevas.es</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="masthead">
+    <span class="label">Newsletter</span>
+    <h1>Criterio</h1>
+    <p class="tagline">"Lo que los datos no dicen, lo que la IA no decide y lo que la regulación no resuelve."</p>
+    <p class="description">Reflexiones mensuales sobre el punto de cruce entre estrategia, gobierno del dato e inteligencia artificial. Sin jerga innecesaria. Para quienes toman decisiones y necesitan criterio antes que tecnología.</p>
+
+    <div class="form-wrapper">
+      <form class="form-row" action="https://www.criterio.guillermocuevas.es" method="get" target="_blank">
+        <div class="form-group">
+          <label class="form-label" for="email">Tu correo electrónico</label>
+          <input class="form-input" id="email" name="email" placeholder="nombre@compania.com" type="email">
+        </div>
+        <button class="btn-primary" type="submit">
+          <span>Suscribirse</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </button>
+      </form>
+      <p class="form-disclaimer">Prometemos no saturar tu bandeja de entrada. Despídete cuando quieras.</p>
+    </div>
+  </section>
+
+  <section class="editorial">
+    <div class="editorial-grid">
+      <div class="editorial-image">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80" alt="Tecnología y datos">
+      </div>
+      <div class="editorial-text">
+        <h3>La estrategia antes que el algoritmo.</h3>
+        <p>En un mundo obsesionado con la última versión de los modelos de lenguaje, nos detenemos a analizar la estructura que los sostiene. Hablamos de ética, de soberanía del dato y de cómo el juicio humano sigue siendo el activo más escaso.</p>
+      </div>
+    </div>
+    <div class="pullquote">
+      <blockquote>"La inteligencia artificial no sustituirá al directivo, pero el directivo con criterio sustituirá al que solo tiene datos."</blockquote>
+      <cite>— Nota del Editor</cite>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="footer-wordmark">Criterio</span>
+      <p class="footer-copy">© 2026 Guillermo Cuevas Ramos</p>
+    </div>
+    <nav class="footer-links">
+      <a href="https://www.linkedin.com/in/guillermo-cuevas-ramos/" target="_blank">LinkedIn</a>
+      <a href="https://www.criterio.guillermocuevas.es">Newsletter</a>
+      <a href="/criterio/archivo.html">Archivo</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
