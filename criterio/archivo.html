@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Archivo — Criterio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --primary:       #245347;
+    --primary-light: rgba(36, 83, 71, 0.08);
+    --surface:       #faf9f6;
+    --surface-low:   #f4f3f0;
+    --surface-high:  #e9e8e5;
+    --text-dark:     #1a1c1a;
+    --text-mid:      #404945;
+    --text-light:    #707975;
+    --border:        rgba(0,0,0,0.05);
+    --max-w:         680px;
+  }
+
+  html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+
+  body {
+    font-family: 'Manrope', sans-serif;
+    background-color: var(--surface);
+    color: var(--text-mid);
+    min-height: 100vh;
+    font-weight: 300;
+  }
+
+  /* HEADER */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(250,249,246,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .header-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .wordmark {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-size: 1.5rem;
+    color: var(--primary);
+    text-decoration: none;
+    opacity: 0.9;
+    transition: opacity 0.2s;
+  }
+  .wordmark:hover { opacity: 1; }
+  .header-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .header-nav a {
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .header-nav a:hover { color: var(--primary); }
+  .header-nav a.active {
+    color: var(--primary);
+    font-weight: 700;
+  }
+  .header-divider {
+    color: rgba(0,0,0,0.15);
+    font-size: 0.875rem;
+  }
+
+  /* MAIN */
+  main {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 6rem 1.5rem 8rem;
+    min-height: 80vh;
+  }
+
+  /* PAGE HEADER */
+  .page-header { margin-bottom: 5rem; }
+  .label {
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 700;
+    color: var(--text-light);
+    display: block;
+    margin-bottom: 1rem;
+  }
+  .page-header h1 {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 3.5rem;
+    line-height: 1.1;
+    color: var(--text-dark);
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.01em;
+  }
+  .page-header .tagline {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-mid);
+    max-width: 540px;
+  }
+  .header-rule {
+    width: 100%;
+    height: 1px;
+    background: rgba(0,0,0,0.06);
+    margin-top: 3rem;
+  }
+
+  /* ARCHIVE LIST */
+  .archive-list { display: flex; flex-direction: column; }
+
+  .archive-item {
+    display: block;
+    padding: 2.5rem 1.5rem;
+    margin: 0 -1.5rem;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.25s;
+  }
+  .archive-item:hover { background: var(--surface-low); }
+
+  .archive-item-inner {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 1.5rem;
+    align-items: baseline;
+  }
+
+  .issue-number {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: var(--primary);
+    line-height: 1;
+  }
+  .issue-date {
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 500;
+    color: var(--text-light);
+    margin-top: 0.375rem;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .archive-item:hover .issue-date { opacity: 1; }
+
+  .issue-content { display: flex; flex-direction: column; gap: 0.75rem; }
+  .issue-title {
+    font-family: 'Newsreader', serif;
+    font-weight: 400;
+    font-size: 1.375rem;
+    line-height: 1.35;
+    color: var(--text-dark);
+    transition: color 0.2s;
+  }
+  .archive-item:hover .issue-title { color: var(--primary); }
+
+  .issue-excerpt {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-mid);
+  }
+
+  .issue-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-top: 0.5rem;
+  }
+  .issue-cta svg { transition: transform 0.2s; }
+  .archive-item:hover .issue-cta svg { transform: translateX(4px); }
+
+  /* DIVIDER BETWEEN ITEMS */
+  .archive-divider {
+    width: 40px;
+    height: 1px;
+    background: rgba(0,0,0,0.1);
+    margin-left: calc(80px + 1.5rem);
+  }
+
+  /* PLACEHOLDER ISSUE */
+  .archive-item-placeholder {
+    padding: 2.5rem 1.5rem;
+    margin: 0 -1.5rem;
+    opacity: 0.28;
+    pointer-events: none;
+    user-select: none;
+  }
+  .placeholder-inner {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 1.5rem;
+    align-items: baseline;
+  }
+  .placeholder-number {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--text-light);
+  }
+  .placeholder-line-lg {
+    height: 1.375rem;
+    width: 72%;
+    background: var(--surface-high);
+    border-radius: 2px;
+    margin-bottom: 0.75rem;
+  }
+  .placeholder-line-sm {
+    height: 1rem;
+    width: 100%;
+    background: rgba(0,0,0,0.06);
+    border-radius: 2px;
+  }
+
+  /* SUBSCRIPTION CARD */
+  .subscription-card {
+    margin-top: 8rem;
+    padding: 3rem;
+    background: #fff;
+    border: 1px solid rgba(36, 83, 71, 0.2);
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+  }
+  .subscription-card h3 {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.375rem;
+    color: var(--text-dark);
+    margin-bottom: 0.75rem;
+  }
+  .subscription-card p {
+    font-size: 0.9375rem;
+    color: var(--text-light);
+    line-height: 1.6;
+    margin-bottom: 1.75rem;
+  }
+  .sub-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  @media (min-width: 480px) {
+    .sub-form { flex-direction: row; align-items: center; }
+  }
+  .sub-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+    padding: 0.625rem 0;
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.9375rem;
+    color: var(--text-dark);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .sub-input::placeholder { color: rgba(0,0,0,0.25); }
+  .sub-input:focus { border-color: var(--primary); }
+  .btn-sub {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 0.625rem 1.75rem;
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.3s;
+    white-space: nowrap;
+  }
+  .btn-sub:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(36, 83, 71, 0.15);
+  }
+
+  /* DECORATION */
+  .card-deco {
+    position: absolute;
+    right: -1rem;
+    bottom: -1rem;
+    opacity: 0.04;
+    font-size: 9rem;
+    line-height: 1;
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    color: var(--text-dark);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    margin-top: 8rem;
+    background: var(--surface-low);
+  }
+  .footer-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 3rem 1.5rem 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    text-align: center;
+  }
+  @media (min-width: 540px) {
+    .footer-inner {
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: left;
+    }
+  }
+  .footer-brand { display: flex; flex-direction: column; gap: 0.375rem; }
+  .footer-wordmark {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-size: 1.125rem;
+    color: var(--primary);
+  }
+  .footer-copy {
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+    color: var(--text-light);
+  }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--primary); text-decoration: underline; text-underline-offset: 4px; }
+  .footer-links a.active {
+    color: var(--text-dark);
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a class="wordmark" href="/criterio/">Criterio</a>
+    <nav class="header-nav">
+      <a href="/criterio/archivo.html" class="active">Archivo</a>
+      <span class="header-divider">|</span>
+      <a href="https://guillermocuevas.es">guillermocuevas.es</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <header class="page-header">
+    <span class="label">Archivo</span>
+    <h1>Criterio</h1>
+    <p class="tagline">Lo que los datos no dicen, lo que la IA no decide y lo que la regulación no resuelve.</p>
+    <div class="header-rule"></div>
+  </header>
+
+  <section class="archive-list">
+
+    <!-- Nº 1 -->
+    <a class="archive-item" href="#" id="issue-1">
+      <div class="archive-item-inner">
+        <div>
+          <div class="issue-number">Nº 1</div>
+          <div class="issue-date">MAY 2026</div>
+        </div>
+        <div class="issue-content">
+          <h2 class="issue-title">Por qué la mayoría de los proyectos de IA fracasan antes de empezar</h2>
+          <p class="issue-excerpt">La mayoría de los proyectos de inteligencia artificial fracasan. Pero lo importante no es la cifra — es cuándo fracasan.</p>
+          <span class="issue-cta">
+            Leer número
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <div class="archive-divider"></div>
+
+    <!-- Nº 2 — placeholder -->
+    <div class="archive-item-placeholder">
+      <div class="placeholder-inner">
+        <span class="placeholder-number">Nº 2</span>
+        <div>
+          <div class="placeholder-line-lg"></div>
+          <div class="placeholder-line-sm"></div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Subscription card -->
+  <section class="subscription-card">
+    <h3>Mantente informado</h3>
+    <p>Recibe el análisis crítico de Criterio directamente en tu bandeja de entrada cada mes.</p>
+    <form class="sub-form" action="https://www.criterio.guillermocuevas.es" method="get" target="_blank">
+      <input class="sub-input" placeholder="tu@email.com" type="email" name="email">
+      <button class="btn-sub" type="submit">Suscribirse</button>
+    </form>
+    <div class="card-deco">C</div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="footer-wordmark">Criterio</span>
+      <p class="footer-copy">© 2026 Criterio — Guillermo Cuevas Ramos</p>
+    </div>
+    <nav class="footer-links">
+      <a href="/criterio/archivo.html" class="active">Archivo</a>
+      <a href="https://www.linkedin.com/in/guillermo-cuevas-ramos/" target="_blank">LinkedIn</a>
+      <a href="https://www.criterio.guillermocuevas.es">Newsletter</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
