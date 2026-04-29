@@ -51,7 +51,7 @@ a { color: inherit; text-decoration: none; }
 /* =====================
    TYPOGRAPHY SCALE
 ===================== */
-h1, h2, h3, .serif { font-family: var(--font-display); }
+h1, h2, h3, .serif { font-family: var(--font-display); text-align: left; }
 
 .eyebrow {
   display: block;
@@ -254,6 +254,7 @@ section {
   font-size: 1.5rem;
   font-weight: 400;
   min-height: 3.6rem;
+  text-align: left;
 }
 
 .pilar-text {
@@ -449,7 +450,7 @@ section {
 .newsletter-description {
   color: var(--text-mid);
   max-width: 600px;
-  margin: 0 auto 3rem;
+  margin: 0 auto 1.5rem;
 }
 
 /* =====================
