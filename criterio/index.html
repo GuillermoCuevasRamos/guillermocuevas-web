@@ -31,6 +31,7 @@
     color: var(--text-mid);
     min-height: 100vh;
     font-weight: 300;
+    text-align: justify;
   }
 
   /* HEADER */
@@ -117,14 +118,13 @@
     line-height: 1.8;
     font-weight: 300;
     color: var(--text-mid);
-    max-width: 560px;
   }
 
   /* FORM */
   .form-wrapper {
-    margin-top: 3rem;
-    padding-top: 3rem;
-    border-top: 1px solid var(--border);
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
   }
   .form-row {
     display: flex;
@@ -162,23 +162,24 @@
     background: var(--primary);
     color: #fff;
     border: none;
-    padding: 0.75rem 2rem;
+    padding: 0.875rem 2rem;
     font-family: 'Manrope', sans-serif;
-    font-size: 0.875rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     cursor: pointer;
     border-radius: 2px;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 0.5rem;
+    text-decoration: none;
     transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.3s;
     white-space: nowrap;
   }
   .btn-primary:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 30px rgba(36, 83, 71, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(36, 83, 71, 0.18);
   }
   .form-disclaimer {
     margin-top: 1rem;
@@ -363,17 +364,10 @@
     <p class="description">Reflexiones mensuales sobre el punto de cruce entre estrategia, gobierno del dato e inteligencia artificial. Sin jerga innecesaria. Para quienes toman decisiones y necesitan criterio antes que tecnología.</p>
 
     <div class="form-wrapper">
-      <form class="form-row" action="https://www.criterio.guillermocuevas.es" method="get" target="_blank">
-        <div class="form-group">
-          <label class="form-label" for="email">Tu correo electrónico</label>
-          <input class="form-input" id="email" name="email" placeholder="nombre@compania.com" type="email">
-        </div>
-        <button class="btn-primary" type="submit">
-          <span>Suscribirse</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        </button>
-      </form>
-      <p class="form-disclaimer">Prometemos no saturar tu bandeja de entrada. Despídete cuando quieras.</p>
+      <a class="btn-primary" href="https://www.criterio.guillermocuevas.es" target="_blank" rel="noopener noreferrer">
+        <span>Suscribirse</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </a>
     </div>
   </section>
 
