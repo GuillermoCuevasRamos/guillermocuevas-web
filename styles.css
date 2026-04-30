@@ -439,6 +439,7 @@ section {
   font-style: italic;
   color: var(--primary);
   margin-bottom: 1.5rem;
+  text-align: center;
 }
 
 .newsletter-tagline {
@@ -563,6 +564,7 @@ section {
   font-size: clamp(4rem, 10vw, 6rem);
   margin-bottom: 2.5rem;
   color: var(--primary);
+  text-align: center;
 }
 
 .contact-text {
