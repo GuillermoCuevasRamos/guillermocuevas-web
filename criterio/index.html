@@ -76,6 +76,24 @@
   }
   .header-nav a:hover { color: #fff; }
 
+  /* LANG TOGGLE */
+  .lang-toggle {
+    background: none;
+    border: 1.5px solid #fff;
+    color: #fff;
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    padding: 0.3rem 0.75rem;
+    cursor: pointer;
+    border-radius: 2px;
+    line-height: 1.5;
+    opacity: 0.85;
+    transition: opacity 0.2s;
+  }
+  .lang-toggle:hover { opacity: 1; }
+
   /* MAIN */
   main {
     max-width: var(--max-w);
@@ -352,6 +370,7 @@
     <a class="wordmark" href="/criterio/">Criterio</a>
     <nav class="header-nav">
       <a href="https://guillermocuevas.es">guillermocuevas.es</a>
+      <button class="lang-toggle" id="lang-toggle" aria-label="Change language"><span id="lang-indicator">EN</span></button>
     </nav>
   </div>
 </header>
@@ -363,11 +382,11 @@
         <path d="M60 10 A50 50 0 1 0 60 90" stroke="#245347" stroke-width="6" fill="none" stroke-linecap="round"/>
         <circle cx="60" cy="50" r="5" fill="#245347"/>
       </g>
-      <text x="140" y="75" font-family="'Newsreader', Georgia, serif" font-style="italic" font-size="48" fill="#245347" letter-spacing="1">Criterio</text>
-      <text x="142" y="100" font-family="'Manrope', system-ui, sans-serif" font-size="13" fill="#707975" letter-spacing="3">NEWSLETTER</text>
+      <text x="140" y="88" font-family="'Newsreader', Georgia, serif" font-style="italic" font-size="48" fill="#245347" letter-spacing="1">Criterio</text>
+      <text x="142" y="113" font-family="'Manrope', system-ui, sans-serif" font-size="13" fill="#707975" letter-spacing="3">NEWSLETTER</text>
     </svg>
-    <p class="tagline">"Lo que los datos no dicen, lo que la IA no decide y lo que la regulación no resuelve."</p>
-    <p class="description">Reflexiones mensuales que conectan estrategia, gobierno del dato e IA. Para quienes toman decisiones y priorizan el criterio sobre la tecnología.</p>
+    <p class="tagline" data-i18n="tagline">"Lo que los datos no dicen, lo que la IA no decide y lo que la regulación no resuelve."</p>
+    <p class="description" data-i18n="description">Reflexiones mensuales que conectan estrategia, gobierno del dato e IA. Para quienes toman decisiones y priorizan el criterio sobre la tecnología.</p>
 
     <div class="form-wrapper">
       <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="7a02c27b-e5fb-4e5f-82d8-a437ed9539dc"></script>
@@ -375,7 +394,7 @@
   </section>
 
   <section class="issues-section">
-    <span class="label">Números publicados</span>
+    <span class="label" data-i18n="issues.label">Números publicados</span>
 
     <div class="archive-list">
 
@@ -383,14 +402,14 @@
       <a class="archive-item" href="#" id="issue-1">
         <div class="archive-item-inner">
           <div>
-            <div class="issue-number">Nº 1</div>
+            <div class="issue-number" data-i18n="issue1.num">Nº 1</div>
             <div class="issue-date">MAY 2026</div>
           </div>
           <div class="issue-content">
-            <h2 class="issue-title">Por qué la mayoría de los proyectos de IA fracasan antes de empezar</h2>
-            <p class="issue-excerpt">La mayoría de los proyectos de inteligencia artificial fracasan. Pero lo importante no es la cifra — es cuándo fracasan.</p>
+            <h2 class="issue-title" data-i18n="issue1.title">Por qué la mayoría de los proyectos de IA fracasan antes de empezar</h2>
+            <p class="issue-excerpt" data-i18n="issue1.excerpt">La mayoría de los proyectos de inteligencia artificial fracasan. Pero lo importante no es la cifra — es cuándo fracasan.</p>
             <span class="issue-cta">
-              Leer número
+              <span data-i18n="issue1.cta">Leer número</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </span>
           </div>
@@ -400,7 +419,7 @@
       <!-- Nº 2 — próximamente -->
       <div class="archive-item-placeholder">
         <div class="placeholder-inner">
-          <span class="placeholder-number">Nº 2</span>
+          <span class="placeholder-number" data-i18n="issue2.num">Nº 2</span>
           <div>
             <div class="placeholder-line-lg"></div>
             <div class="placeholder-line-sm"></div>
@@ -424,6 +443,61 @@
     </nav>
   </div>
 </footer>
+
+<script>
+  // ── Translations ────────────────────────────────────────────────────
+  const translations = {
+    es: {
+      'tagline':       '"Lo que los datos no dicen, lo que la IA no decide y lo que la regulación no resuelve."',
+      'description':   'Reflexiones mensuales que conectan estrategia, gobierno del dato e IA. Para quienes toman decisiones y priorizan el criterio sobre la tecnología.',
+      'issues.label':  'Números publicados',
+      'issue1.num':    'Nº 1',
+      'issue1.title':  'Por qué la mayoría de los proyectos de IA fracasan antes de empezar',
+      'issue1.excerpt':'La mayoría de los proyectos de inteligencia artificial fracasan. Pero lo importante no es la cifra — es cuándo fracasan.',
+      'issue1.cta':    'Leer número',
+      'issue2.num':    'Nº 2',
+      'meta.title':    'Criterio — Lo que los datos no dicen',
+    },
+    en: {
+      'tagline':       '"What the data doesn\'t say, what AI doesn\'t decide, and what regulation doesn\'t resolve."',
+      'description':   'Monthly reflections connecting strategy, data governance and AI. For those who make decisions and prioritise judgment over technology.',
+      'issues.label':  'Published issues',
+      'issue1.num':    'No. 1',
+      'issue1.title':  'Why most AI projects fail before they even start',
+      'issue1.excerpt':"Most artificial intelligence projects fail. But what matters is not the number — it's when they fail.",
+      'issue1.cta':    'Read issue',
+      'issue2.num':    'No. 2',
+      'meta.title':    "Criterio — What the data doesn't say",
+    }
+  };
+
+  let currentLang = localStorage.getItem('lang') || 'es';
+
+  function setLanguage(lang) {
+    document.documentElement.lang = lang;
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const val = translations[lang]?.[el.getAttribute('data-i18n')];
+      if (val !== undefined) el.textContent = val;
+    });
+
+    if (translations[lang]['meta.title']) document.title = translations[lang]['meta.title'];
+
+    const indicator = document.getElementById('lang-indicator');
+    if (indicator) indicator.textContent = lang === 'es' ? 'EN' : 'ES';
+
+    localStorage.setItem('lang', lang);
+    currentLang = lang;
+  }
+
+  // ── Language toggle ─────────────────────────────────────────────────
+  document.getElementById('lang-toggle').addEventListener('click', () => {
+    setLanguage(currentLang === 'es' ? 'en' : 'es');
+  });
+
+  // Init
+  setLanguage(currentLang);
+</script>
 
 </body>
 </html>
