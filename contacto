@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacto — Guillermo Cuevas Ramos</title>
+  <meta name="description" content="Escríbeme si tienes un proyecto de datos o IA. Respondo en 48 horas." />
+  <meta name="author" content="Guillermo Cuevas Ramos" />
+  <link rel="canonical" href="https://guillermocuevas.es/contacto/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://guillermocuevas.es/contacto/" />
+  <meta property="og:title" content="Contacto — Guillermo Cuevas Ramos" />
+  <meta property="og:description" content="Escríbeme si tienes un proyecto de datos o IA. Respondo en 48 horas." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+  <link rel="stylesheet" href="../styles.css" />
+
+  <style>
+    /* ── Página de contacto ── */
+    .contact-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10rem 6vw 6rem;
+      background: var(--surface);
+    }
+
+    .contact-card {
+      width: 100%;
+      max-width: 680px;
+    }
+
+    .contact-card .eyebrow { margin-bottom: 1rem; }
+
+    .contact-card h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 3.75rem);
+      font-weight: 400;
+      color: var(--primary);
+      margin-bottom: 0.75rem;
+    }
+
+    .contact-card .form-intro {
+      font-size: 1.05rem;
+      color: var(--text-mid);
+      margin-bottom: 3rem;
+      line-height: 1.7;
+    }
+
+    .form-group {
+      margin-bottom: 1.75rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-bottom: 1.75rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 0.6rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      background: var(--white);
+      border: 1px solid var(--surface-high);
+      border-radius: 2px;
+      padding: 1rem 1.25rem;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--text-dark);
+      line-height: 1.6;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(36, 83, 71, 0.08);
+    }
+
+    textarea {
+      min-height: 180px;
+      resize: vertical;
+    }
+
+    .form-submit {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .form-submit .contact-btn {
+      cursor: pointer;
+      border: none;
+      font-family: var(--font-body);
+    }
+
+    .form-back {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.2s;
+    }
+    .form-back:hover { color: var(--primary); }
+    .form-back .material-symbols-outlined { font-size: 1rem; }
+
+    .form-note {
+      margin-top: 1.5rem;
+      font-size: 0.8rem;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    /* Mensaje de confirmación (oculto por defecto) */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 3rem 2rem;
+      border: 1px solid rgba(36, 83, 71, 0.2);
+      background: rgba(36, 83, 71, 0.04);
+    }
+    .form-success .material-symbols-outlined {
+      font-size: 3rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .form-success h2 {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 400;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+    .form-success p { color: var(--text-mid); }
+
+    /* Lang toggle */
+    .nav-actions { display: flex; align-items: center; gap: 0.75rem; }
+    .lang-toggle {
+      background: none;
+      border: 1.5px solid #fff;
+      color: #fff;
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      padding: 0.3rem 0.75rem;
+      cursor: pointer;
+      border-radius: 2px;
+      opacity: 0.85;
+      transition: opacity 0.2s;
+      line-height: 1.5;
+    }
+    .lang-toggle:hover { opacity: 1; }
+
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+      .contact-page { padding: 8rem 5vw 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main-form" class="skip-link" data-i18n="skip">Saltar al formulario</a>
+
+  <!-- NAVIGATION -->
+  <nav id="site-nav">
+    <a href="../" class="nav-logo">Guillermo Cuevas</a>
+    <ul class="nav-links">
+      <li><a href="../#sobre-mi"     data-i18n="nav.about">Sobre mí</a></li>
+      <li><a href="../#credenciales" data-i18n="nav.credentials">Trayectoria</a></li>
+      <li><a href="../#pilares"      data-i18n="nav.approach">Enfoque</a></li>
+      <li><a href="../#casos"        data-i18n="nav.cases">Casos</a></li>
+      <li><a href="../#newsletter">Newsletter</a></li>
+      <li><a href="../#contacto"     data-i18n="nav.contact">Contacto</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="lang-toggle" id="lang-toggle" aria-label="Change language"><span id="lang-indicator">EN</span></button>
+      <button class="nav-hamburger" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false" data-i18n-aria="nav.hamburger">
+        <span class="material-symbols-outlined" id="nav-icon">menu</span>
+      </button>
+    </div>
+  </nav>
+
+  <main id="main-form">
+    <div class="contact-page">
+      <div class="contact-card">
+        <span class="eyebrow" data-i18n="eyebrow">Contacto</span>
+        <h1 data-i18n="h1">Hablemos</h1>
+        <p class="form-intro" data-i18n="intro">Cuéntame qué está pasando con tus datos o tu proyecto de IA. Respondo en 48 horas.</p>
+
+        <form id="contact-form" action="https://formspree.io/f/xjgjnnrg" method="POST">
+          <div class="form-row">
+            <div>
+              <label for="nombre" data-i18n="label.nombre">Nombre</label>
+              <input type="text" id="nombre" name="nombre" placeholder="María" data-i18n-placeholder="placeholder.nombre" required />
+            </div>
+            <div>
+              <label for="apellidos" data-i18n="label.apellidos">Apellidos</label>
+              <input type="text" id="apellidos" name="apellidos" placeholder="García López" data-i18n-placeholder="placeholder.apellidos" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email" data-i18n="label.email">Correo electrónico</label>
+            <input type="email" id="email" name="email" placeholder="maria@empresa.com" data-i18n-placeholder="placeholder.email" required />
+          </div>
+
+          <div class="form-group">
+            <label for="asunto" data-i18n="label.asunto">Asunto</label>
+            <input type="text" id="asunto" name="asunto" placeholder="Ej. Estrategia de datos, gobierno del dato, IA..." data-i18n-placeholder="placeholder.asunto" required />
+          </div>
+
+          <div class="form-group">
+            <label for="mensaje" data-i18n="label.mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" placeholder="Cuéntame brevemente el reto o proyecto..." data-i18n-placeholder="placeholder.mensaje" required></textarea>
+          </div>
+
+          <input type="hidden" name="_next" value="https://guillermocuevas.es/contacto/?enviado=true" />
+          <input type="hidden" name="_subject" value="Nuevo mensaje desde guillermocuevas.es" />
+
+          <div class="form-submit">
+            <a href="../#contacto" class="form-back">
+              <span class="material-symbols-outlined">arrow_back</span>
+              <span data-i18n="btn.back">Volver</span>
+            </a>
+            <button type="submit" class="contact-btn" data-i18n="btn.submit">Enviar mensaje</button>
+          </div>
+
+          <p class="form-note" data-i18n-html="form.note">
+            Tus datos se usan exclusivamente para responder a tu consulta y no se ceden a terceros. Conforme al RGPD, puedes ejercer tus derechos en <a href="mailto:contacto@guillermocuevas.es" style="color:var(--primary)">contacto@guillermocuevas.es</a>.
+          </p>
+        </form>
+
+        <!-- Mensaje de éxito -->
+        <div class="form-success" id="form-success">
+          <span class="material-symbols-outlined">check_circle</span>
+          <h2 data-i18n="success.h2">Mensaje enviado</h2>
+          <p data-i18n="success.p">Gracias por escribirme. Te respondo en menos de 48 horas.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="site-footer">
+    <span class="footer-copy">© 2026 Guillermo Cuevas Ramos</span>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/guillermo-cuevas-ramos/" target="_blank" rel="noopener noreferrer">LINKEDIN</a>
+      <a href="/criterio/">CRITERIO</a>
+      <a href="mailto:contacto@guillermocuevas.es">contacto@guillermocuevas.es</a>
+    </div>
+  </footer>
+
+  <script>
+    // ── Translations ──────────────────────────────────────────────────
+    const translations = {
+      es: {
+        'skip':               'Saltar al formulario',
+        'nav.about':          'Sobre mí',
+        'nav.credentials':    'Trayectoria',
+        'nav.approach':       'Enfoque',
+        'nav.cases':          'Casos',
+        'nav.contact':        'Contacto',
+        'nav.hamburger':      'Abrir menú',
+        'eyebrow':            'Contacto',
+        'h1':                 'Hablemos',
+        'intro':              'Cuéntame qué está pasando con tus datos o tu proyecto de IA. Respondo en 48 horas.',
+        'label.nombre':       'Nombre',
+        'placeholder.nombre': 'María',
+        'label.apellidos':    'Apellidos',
+        'placeholder.apellidos': 'García López',
+        'label.email':        'Correo electrónico',
+        'placeholder.email':  'maria@empresa.com',
+        'label.asunto':       'Asunto',
+        'placeholder.asunto': 'Ej. Estrategia de datos, gobierno del dato, IA...',
+        'label.mensaje':      'Mensaje',
+        'placeholder.mensaje':'Cuéntame brevemente el reto o proyecto...',
+        'btn.back':           'Volver',
+        'btn.submit':         'Enviar mensaje',
+        'form.note':          'Tus datos se usan exclusivamente para responder a tu consulta y no se ceden a terceros. Conforme al RGPD, puedes ejercer tus derechos en <a href="mailto:contacto@guillermocuevas.es" style="color:var(--primary)">contacto@guillermocuevas.es</a>.',
+        'success.h2':         'Mensaje enviado',
+        'success.p':          'Gracias por escribirme. Te respondo en menos de 48 horas.',
+        'meta.title':         'Contacto — Guillermo Cuevas Ramos',
+      },
+      en: {
+        'skip':               'Skip to form',
+        'nav.about':          'About me',
+        'nav.credentials':    'Career',
+        'nav.approach':       'Approach',
+        'nav.cases':          'Cases',
+        'nav.contact':        'Contact',
+        'nav.hamburger':      'Open menu',
+        'eyebrow':            'Contact',
+        'h1':                 "Let's talk",
+        'intro':              "Tell me what's happening with your data or AI project. I'll get back to you within 48 hours.",
+        'label.nombre':       'First name',
+        'placeholder.nombre': 'María',
+        'label.apellidos':    'Last name',
+        'placeholder.apellidos': 'García López',
+        'label.email':        'Email address',
+        'placeholder.email':  'maria@company.com',
+        'label.asunto':       'Subject',
+        'placeholder.asunto': 'E.g. Data strategy, data governance, AI...',
+        'label.mensaje':      'Message',
+        'placeholder.mensaje':"Briefly describe your challenge or project...",
+        'btn.back':           'Back',
+        'btn.submit':         'Send message',
+        'form.note':          'Your data is used solely to respond to your enquiry and will not be shared with third parties. Under GDPR, you may exercise your rights at <a href="mailto:contacto@guillermocuevas.es" style="color:var(--primary)">contacto@guillermocuevas.es</a>.',
+        'success.h2':         'Message sent',
+        'success.p':          "Thank you for reaching out. I'll get back to you within 48 hours.",
+        'meta.title':         'Contact — Guillermo Cuevas Ramos',
+      }
+    };
+
+    let currentLang = localStorage.getItem('lang') || 'es';
+
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const val = translations[lang]?.[el.getAttribute('data-i18n')];
+        if (val !== undefined) el.textContent = val;
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const val = translations[lang]?.[el.getAttribute('data-i18n-html')];
+        if (val !== undefined) el.innerHTML = val;
+      });
+      document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+        const val = translations[lang]?.[el.getAttribute('data-i18n-aria')];
+        if (val !== undefined) el.setAttribute('aria-label', val);
+      });
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const val = translations[lang]?.[el.getAttribute('data-i18n-placeholder')];
+        if (val !== undefined) el.setAttribute('placeholder', val);
+      });
+
+      if (translations[lang]['meta.title']) document.title = translations[lang]['meta.title'];
+
+      const indicator = document.getElementById('lang-indicator');
+      if (indicator) indicator.textContent = lang === 'es' ? 'EN' : 'ES';
+
+      localStorage.setItem('lang', lang);
+      currentLang = lang;
+    }
+
+    // ── Hamburger ─────────────────────────────────────────────────────
+    const toggle  = document.getElementById('nav-toggle');
+    const navList = document.querySelector('.nav-links');
+    const icon    = document.getElementById('nav-icon');
+
+    toggle.addEventListener('click', () => {
+      const isOpen = navList.classList.toggle('nav-open');
+      toggle.setAttribute('aria-expanded', isOpen);
+      icon.textContent = isOpen ? 'close' : 'menu';
+    });
+    navList.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navList.classList.remove('nav-open');
+        toggle.setAttribute('aria-expanded', false);
+        icon.textContent = 'menu';
+      });
+    });
+
+    // ── Language toggle ───────────────────────────────────────────────
+    document.getElementById('lang-toggle').addEventListener('click', () => {
+      setLanguage(currentLang === 'es' ? 'en' : 'es');
+    });
+
+    // ── Mostrar confirmación si Formspree redirige con ?enviado=true ──
+    if (new URLSearchParams(window.location.search).get('enviado') === 'true') {
+      document.getElementById('contact-form').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+    }
+
+    // Init
+    setLanguage(currentLang);
+  </script>
+</body>
+</html>
